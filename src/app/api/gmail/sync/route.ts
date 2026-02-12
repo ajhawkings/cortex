@@ -1,6 +1,6 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { drizzle } from "drizzle-orm/d1";
-import { eq, and, inArray } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { auth } from "@/lib/auth";
 import { fetchRecentEmails, refreshAccessToken } from "@/lib/gmail";
 import { categoriseEmails } from "@/lib/ai";
@@ -15,12 +15,7 @@ export async function POST() {
 	const { env } = getCloudflareContext();
 	const db = drizzle(env.DB, { schema });
 
-	// Get the user's Google account from Auth.js accounts table
-	const accounts = await db.all(
-		db.select().from(schema.items).limit(0) // placeholder — we need to query the Auth.js accounts table directly
-	);
-
-	// Query Auth.js accounts table directly (it's created by @auth/d1-adapter)
+	// Query Auth.js accounts table directly (created by @auth/d1-adapter)
 	const accountRow = await env.DB.prepare(
 		"SELECT access_token, refresh_token, expires_at FROM accounts WHERE userId = ? AND provider = 'google' LIMIT 1"
 	).bind(session.user.id).first<{

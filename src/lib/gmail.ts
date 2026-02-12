@@ -99,6 +99,22 @@ export async function fetchRecentEmails(
 	};
 }
 
+export async function markAsRead(accessToken: string, messageId: string): Promise<void> {
+	const res = await fetch(`${GMAIL_API}/messages/${messageId}/modify`, {
+		method: "POST",
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ removeLabelIds: ["UNREAD"] }),
+	});
+
+	if (!res.ok) {
+		const err = await res.text();
+		throw new Error(`Gmail markAsRead failed (${res.status}): ${err}`);
+	}
+}
+
 export async function refreshAccessToken(
 	refreshToken: string,
 	clientId: string,
@@ -120,7 +136,7 @@ export async function refreshAccessToken(
 		throw new Error(`Token refresh failed (${res.status}): ${err}`);
 	}
 
-	const data = await res.json();
+	const data = await res.json() as { access_token: string; expires_in: number };
 	return {
 		accessToken: data.access_token,
 		expiresAt: Date.now() + data.expires_in * 1000,

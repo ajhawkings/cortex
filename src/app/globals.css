@@ -83,37 +83,37 @@
 }
 
 .dark {
-	--background: oklch(0.145 0 0);
-	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.205 0 0);
-	--card-foreground: oklch(0.985 0 0);
-	--popover: oklch(0.205 0 0);
-	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.922 0 0);
-	--primary-foreground: oklch(0.205 0 0);
-	--secondary: oklch(0.269 0 0);
-	--secondary-foreground: oklch(0.985 0 0);
-	--muted: oklch(0.269 0 0);
-	--muted-foreground: oklch(0.708 0 0);
-	--accent: oklch(0.269 0 0);
-	--accent-foreground: oklch(0.985 0 0);
+	--background: #0f1729;
+	--foreground: #e8ecf4;
+	--card: #162037;
+	--card-foreground: #e8ecf4;
+	--popover: #162037;
+	--popover-foreground: #e8ecf4;
+	--primary: #e8ecf4;
+	--primary-foreground: #0f1729;
+	--secondary: #1e2d4a;
+	--secondary-foreground: #e8ecf4;
+	--muted: #1e2d4a;
+	--muted-foreground: #94a3bb;
+	--accent: #1e2d4a;
+	--accent-foreground: #e8ecf4;
 	--destructive: oklch(0.704 0.191 22.216);
-	--border: oklch(1 0 0 / 10%);
-	--input: oklch(1 0 0 / 15%);
-	--ring: oklch(0.556 0 0);
+	--border: rgba(148, 163, 187, 0.15);
+	--input: rgba(148, 163, 187, 0.2);
+	--ring: #3b82f6;
 	--chart-1: oklch(0.488 0.243 264.376);
 	--chart-2: oklch(0.696 0.17 162.48);
 	--chart-3: oklch(0.769 0.188 70.08);
 	--chart-4: oklch(0.627 0.265 303.9);
 	--chart-5: oklch(0.645 0.246 16.439);
-	--sidebar: oklch(0.205 0 0);
-	--sidebar-foreground: oklch(0.985 0 0);
-	--sidebar-primary: oklch(0.488 0.243 264.376);
-	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.269 0 0);
-	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(1 0 0 / 10%);
-	--sidebar-ring: oklch(0.556 0 0);
+	--sidebar: #162037;
+	--sidebar-foreground: #e8ecf4;
+	--sidebar-primary: #3b82f6;
+	--sidebar-primary-foreground: #e8ecf4;
+	--sidebar-accent: #1e2d4a;
+	--sidebar-accent-foreground: #e8ecf4;
+	--sidebar-border: rgba(148, 163, 187, 0.15);
+	--sidebar-ring: #3b82f6;
 }
 
 @layer base {
@@ -123,4 +123,25 @@
   body {
     @apply bg-background text-foreground;
 	}
+}
+
+/* Custom scrollbar */
+.cortex-scrollbar::-webkit-scrollbar {
+	width: 6px;
+}
+.cortex-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+.cortex-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(148, 163, 187, 0.2);
+	border-radius: 3px;
+}
+.cortex-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: rgba(148, 163, 187, 0.35);
+}
+
+/* Firefox */
+.cortex-scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(148, 163, 187, 0.2) transparent;
 }

@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth(async () => {
 				clientSecret: env.AUTH_GOOGLE_SECRET,
 				authorization: {
 					params: {
-						scope: "openid email profile https://www.googleapis.com/auth/gmail.readonly",
+						scope: "openid email profile https://www.googleapis.com/auth/gmail.modify",
 						access_type: "offline",
 						prompt: "consent",
 					},

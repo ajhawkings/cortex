@@ -29,7 +29,7 @@ export function QuickAdd({ lane, onAdd }: QuickAddProps) {
 					setIsOpen(true);
 					setTimeout(() => inputRef.current?.focus(), 0);
 				}}
-				className="w-full px-3 py-1 text-left text-xs text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+				className="w-full px-4 py-2 text-left text-sm text-muted-foreground/60 hover:text-muted-foreground transition-colors"
 			>
 				+ Add item
 			</button>
@@ -37,7 +37,7 @@ export function QuickAdd({ lane, onAdd }: QuickAddProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="px-3 py-1">
+		<form onSubmit={handleSubmit} className="px-4 py-2">
 			<input
 				ref={inputRef}
 				value={value}

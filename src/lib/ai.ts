@@ -53,7 +53,7 @@ Reply ONLY with a valid JSON array like: [{"lane":"reply"},{"lane":"action"},...
 		throw new Error(`Claude API failed (${res.status}): ${err}`);
 	}
 
-	const data = await res.json();
+	const data = await res.json() as { content: { text: string }[] };
 	const text = data.content[0].text;
 
 	// Extract JSON from response (handle possible markdown code blocks)
