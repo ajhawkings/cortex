@@ -1,0 +1,9 @@
+# Auth.js
+AUTH_SECRET=generate-with-openssl-rand-base64-32
+
+# Google OAuth (console.cloud.google.com)
+AUTH_GOOGLE_ID=your-google-client-id.apps.googleusercontent.com
+AUTH_GOOGLE_SECRET=your-google-client-secret
+
+# Claude API (console.anthropic.com)
+ANTHROPIC_API_KEY=sk-ant-...

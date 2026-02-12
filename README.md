@@ -1,47 +1,84 @@
-# OpenNext Starter
+# Cortex
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+**Your brain's command centre.** A keyboard-driven life organiser that pulls your Gmail inbox, auto-categorises with AI, and lets you manage everything in one dense, beautiful interface.
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js_16-black?logo=next.js)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?logo=cloudflare&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
-Read the documentation at https://opennext.js.org/cloudflare.
+---
 
-## Develop
+## How it works
 
-Run the Next.js development server:
+Emails land in your inbox. Cortex syncs them via the Gmail API, then Claude (Haiku) reads each one and sorts it into a **lane**:
+
+| Lane | Purpose |
+|------|---------|
+| **Reply** | Needs a response |
+| **Action** | Requires you to do something |
+| **Read** | Worth reading later |
+| **Reference** | Saved for lookup (manual only) |
+
+You can also create manual tasks in any lane. Everything lives in one view — no tabs, no page switches.
+
+## Features
+
+- **Multi-lane columns** — toggle, reorder, and colour-coded
+- **AI categorisation** — Claude Haiku sorts incoming email automatically
+- **Gmail sync** — two-way read status, inbox pull
+- **Keyboard-first** — `j`/`k`/arrows to navigate, `Enter` to read, `Backspace` to archive
+- **Drag and drop** — move items between lanes
+- **Reading pane** — full overlay, not a sidebar
+- **Archive & restore** — clear items, bring them back
+- **Reference bin** — collapsible bottom drawer for pinned items
+- **Dark theme** — navy blue with lane-tinted columns
+
+## Stack
+
+| Layer | Tech |
+|-------|------|
+| Framework | Next.js 16 (App Router) + React 19 |
+| Styling | Tailwind CSS v4 + shadcn/ui |
+| Runtime | Cloudflare Workers via `@opennextjs/cloudflare` |
+| Database | Cloudflare D1 (SQLite) + Drizzle ORM |
+| Auth | Auth.js v5 + Google OAuth |
+| AI | Claude API (Haiku) |
+
+## Setup
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up your secrets
+cp .dev.vars.example .dev.vars
+# Fill in: AUTH_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET, ANTHROPIC_API_KEY
+
+# Run database migrations
+npx drizzle-kit push
+
+# Start dev server
 npm run dev
-# or similar package manager command
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-## Preview
-
-Preview the application locally on the Cloudflare runtime:
-
-```bash
-npm run preview
-# or similar package manager command
 ```
 
 ## Deploy
 
-Deploy the application to Cloudflare:
-
 ```bash
 npm run deploy
-# or similar package manager command
 ```
 
-## Learn More
+Deploys to Cloudflare Workers. Database is Cloudflare D1 — no external services needed.
 
-To learn more about Next.js, take a look at the following resources:
+## Keyboard shortcuts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Key | Action |
+|-----|--------|
+| `j` / `k` / `Arrow keys` | Navigate items |
+| `Enter` / Click | Open reading pane |
+| `Escape` | Close pane / deselect |
+| `Backspace` | Archive (or restore in archive view) |
+| `Cmd+Shift+S` | Sync Gmail |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
+
+Built for one person. No multi-tenancy, no onboarding flow, no landing page. Just a tool that works.

@@ -331,7 +331,9 @@ export default function Dashboard() {
 			<header className="px-5 py-3" style={{ borderBottom: "1px solid rgba(59, 130, 246, 0.15)" }}>
 				<div className="flex items-center justify-between">
 					{/* Left: branding */}
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-2.5">
+						{/* eslint-disable-next-line @next/next/no-img-element */}
+						<img src="/image.png" alt="" width={28} height={28} />
 						<h1 className="text-base font-bold tracking-tight text-white">Cortex</h1>
 						{!isLive && (
 							<span className="rounded-md bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300">
