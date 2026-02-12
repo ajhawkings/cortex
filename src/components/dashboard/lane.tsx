@@ -3,6 +3,7 @@
 import type { Item, Lane as LaneType } from "@/types";
 import { LANE_CONFIG } from "@/types";
 import { ItemRow } from "./item-row";
+import { QuickAdd } from "./quick-add";
 
 interface LaneProps {
 	lane: LaneType;
@@ -10,9 +11,10 @@ interface LaneProps {
 	selectedItemId: string | null;
 	onSelectItem: (id: string) => void;
 	onClearItem: (id: string) => void;
+	onAddItem: (title: string, lane: LaneType) => void;
 }
 
-export function Lane({ lane, items, selectedItemId, onSelectItem, onClearItem }: LaneProps) {
+export function Lane({ lane, items, selectedItemId, onSelectItem, onClearItem, onAddItem }: LaneProps) {
 	const config = LANE_CONFIG[lane];
 
 	return (
@@ -30,11 +32,7 @@ export function Lane({ lane, items, selectedItemId, onSelectItem, onClearItem }:
 			</div>
 
 			{/* Items */}
-			{items.length === 0 ? (
-				<div className="px-3 py-4 text-center text-xs text-muted-foreground/50">
-					Nothing here
-				</div>
-			) : (
+			{items.length > 0 && (
 				<div className="divide-y divide-border/50">
 					{items.map((item) => (
 						<ItemRow
@@ -47,6 +45,9 @@ export function Lane({ lane, items, selectedItemId, onSelectItem, onClearItem }:
 					))}
 				</div>
 			)}
+
+			{/* Quick add */}
+			<QuickAdd lane={lane} onAdd={onAddItem} />
 		</div>
 	);
 }
