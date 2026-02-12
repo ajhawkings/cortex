@@ -6,6 +6,7 @@ import { LANE_CONFIG, ALL_LANES, COLUMN_LANES } from "@/types";
 import { Lane } from "@/components/dashboard/lane";
 import { ReferenceBin } from "@/components/dashboard/reference-bin";
 import { ReadingPane } from "@/components/dashboard/reading-pane";
+import Image from "next/image";
 
 // Mock data — used when not authenticated or API unavailable
 const MOCK_ITEMS: Item[] = [
@@ -332,8 +333,7 @@ export default function Dashboard() {
 				<div className="flex items-center justify-between">
 					{/* Left: branding */}
 					<div className="flex items-center gap-2.5">
-						{/* eslint-disable-next-line @next/next/no-img-element */}
-						<img src="/image.png" alt="" width={28} height={28} />
+						<Image src="/image.png" alt="Cortex" width={28} height={28} />
 						<h1 className="text-base font-bold tracking-tight text-white">Cortex</h1>
 						{!isLive && (
 							<span className="rounded-md bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300">
